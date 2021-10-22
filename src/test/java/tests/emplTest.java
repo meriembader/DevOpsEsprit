@@ -1,7 +1,7 @@
 package tests;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.Assert.*;
+
 
 import java.util.List;
 
@@ -15,11 +15,11 @@ import org.springframework.stereotype.Component;
 
 import tn.esprit.spring.entities.Departement;
 import tn.esprit.spring.entities.Employe;
-import tn.esprit.spring.entities.Entreprise;
+
 import tn.esprit.spring.repository.DepartementRepository;
 import tn.esprit.spring.services.DepartementServiceImpl;
 import tn.esprit.spring.services.EmployeServiceImpl;
-import tn.esprit.spring.services.EntrepriseServiceImpl;
+
 
 @Component
 @Aspect
@@ -48,7 +48,7 @@ public class emplTest {
 
 		assertThat(Lemp.contains(savedemp)).isTrue();
 
-		List<Departement> Ldep = depService.affecterDepartementEmploye(savedemp.getId(), savedDep.getId());
+
 
 		assertThat(Lemp.contains(savedDep)).isTrue();
 

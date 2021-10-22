@@ -6,9 +6,9 @@ import java.util.Optional;
 
 import org.junit.Test;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.core.annotation.Order;
+
 import org.springframework.test.annotation.Rollback;
-import org.springframework.test.context.junit4.SpringRunner;
+
 import tn.esprit.spring.entities.Entreprise;
 import tn.esprit.spring.services.EntrepriseServiceImpl;
 

@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import tn.esprit.spring.entities.Departement;
-import tn.esprit.spring.entities.Employe;
+
 import tn.esprit.spring.entities.Entreprise;
 import tn.esprit.spring.repository.DepartementRepository;
 import tn.esprit.spring.repository.EntrepriseRepository;
@@ -18,10 +18,10 @@ import tn.esprit.spring.repository.EntrepriseRepository;
 public class EntrepriseServiceImpl implements IEntrepriseService {
 
 	@Autowired
-    EntrepriseRepository entrepriseRepoistory;
+	EntrepriseRepository entrepriseRepoistory;
 	@Autowired
 	DepartementRepository deptRepoistory;
-	
+
 	public Entreprise ajouterEntreprise(Entreprise entreprise) {
 		entrepriseRepoistory.save(entreprise);
 		return entreprise;
@@ -31,50 +31,84 @@ public class EntrepriseServiceImpl implements IEntrepriseService {
 		deptRepoistory.save(dep);
 		return dep.getId();
 	}
-	
+
 	public void affecterDepartementAEntreprise(int depId, int entrepriseId) {
-		//Le bout Master de cette relation N:1 est departement  
-				//donc il faut rajouter l'entreprise a departement 
-				// ==> c'est l'objet departement(le master) qui va mettre a jour l'association
-				//Rappel : la classe qui contient mappedBy represente le bout Slave
-				//Rappel : Dans une relation oneToMany le mappedBy doit etre du cote one.
-				Entreprise entrepriseManagedEntity = entrepriseRepoistory.findById(entrepriseId).get();
-				Departement depManagedEntity = deptRepoistory.findById(depId).get();
-				
-				depManagedEntity.setEntreprise(entrepriseManagedEntity);
-				deptRepoistory.save(depManagedEntity);
-		
+		// Le bout Master de cette relation N:1 est departement
+		// donc il faut rajouter l'entreprise a departement
+		// ==> c'est l'objet departement(le master) qui va mettre a jour
+		// l'association
+		// Rappel : la classe qui contient mappedBy represente le bout Slave
+		// Rappel : Dans une relation oneToMany le mappedBy doit etre du cote
+		// one.
+
+		Optional<Departement> d = deptRepoistory.findById(depId);
+		Optional<Entreprise> e = entrepriseRepoistory.findById(entrepriseId);
+		Entreprise entrepriseManagedEntity = new Entreprise();
+		Departement depManagedEntity = new Departement();
+		if (d.isPresent() && e.isPresent()) {
+			depManagedEntity = d.get();
+			entrepriseManagedEntity = e.get();
+		}
+
+		depManagedEntity.setEntreprise(entrepriseManagedEntity);
+		deptRepoistory.save(depManagedEntity);
+
 	}
-	
+
 	public List<String> getAllDepartementsNamesByEntreprise(int entrepriseId) {
-		Entreprise entrepriseManagedEntity = entrepriseRepoistory.findById(entrepriseId).get();
+		Optional<Entreprise> e = entrepriseRepoistory.findById(entrepriseId);
+		Entreprise entrepriseManagedEntity = new Entreprise();
+
+		if (e.isPresent()) {
+			entrepriseManagedEntity = e.get();
+
+		}
+
 		List<String> depNames = new ArrayList<>();
-		for(Departement dep : entrepriseManagedEntity.getDepartements()){
+		for (Departement dep : entrepriseManagedEntity.getDepartements()) {
 			depNames.add(dep.getName());
 		}
-		
+
 		return depNames;
 	}
 
 	@Transactional
 	public void deleteEntrepriseById(int entrepriseId) {
-		entrepriseRepoistory.delete(entrepriseRepoistory.findById(entrepriseId).get());	
+		Optional<Entreprise> e = entrepriseRepoistory.findById(entrepriseId);
+
+		if (e.isPresent()) {
+
+			entrepriseRepoistory.delete(e.get());
+		}
+
 	}
 
 	@Transactional
 	public void deleteDepartementById(int depId) {
-		deptRepoistory.delete(deptRepoistory.findById(depId).get());	
-	}
 
+		Optional<Departement> d = deptRepoistory.findById(depId);
+
+		if (d.isPresent()) {
+
+			deptRepoistory.delete(d.get());
+		}
+
+	}
 
 	public Entreprise getEntrepriseById(int entrepriseId) {
-		return entrepriseRepoistory.findById(entrepriseId).get();	
-	}
-	
 
-	public Optional <Entreprise> getEntrepriseByName(String name) {
-		return entrepriseRepoistory.findByName(name);	
+		Optional<Entreprise> e = entrepriseRepoistory.findById(entrepriseId);
+
+		if (e.isPresent()) {
+
+			return e.get();
+
+		}
+		return null;
 	}
-	
+
+	public Optional<Entreprise> getEntrepriseByName(String name) {
+		return entrepriseRepoistory.findByName(name);
+	}
 
 }

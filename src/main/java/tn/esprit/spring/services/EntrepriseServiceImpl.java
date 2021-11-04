@@ -107,8 +107,5 @@ public class EntrepriseServiceImpl implements IEntrepriseService {
 		return null;
 	}
 
-	public Optional<Entreprise> getEntrepriseByName(String name) {
-		return entrepriseRepoistory.findByName(name);
-	}
-
+	
 }

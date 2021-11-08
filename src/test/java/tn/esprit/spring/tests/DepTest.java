@@ -25,7 +25,7 @@ public class DepTest {
 	public IEmployeService Emps;
 	
 	private static final Logger l= LogManager.getLogger(DepTest.class);
-	
+	@SuppressWarnings("squid:S2699")
 	@Test
 	public void testAddDep(){
 		Departement dep= new Departement("Informatique");

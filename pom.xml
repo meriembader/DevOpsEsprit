@@ -16,8 +16,8 @@
 	<description>Timesheet-spring-boot-core-data-jpa-mvc-REST-1</description>
 
 	<properties>
-		<java.version>1.8</java.version>
-		<maven-jar-plugin.version>3.1.1</maven-jar-plugin.version>
+		<java.version>1.7</java.version>
+		<maven-jar-plugin.version>3.8.1</maven-jar-plugin.version>
 	</properties>
 
 	<dependencies>
@@ -45,6 +45,7 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+		
 	</dependencies>
 
 	<build>

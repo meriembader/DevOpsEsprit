@@ -34,8 +34,6 @@ public interface EmployeRepository extends CrudRepository<Employe, Integer>  {
     public void mettreAjourEmailByEmployeIdJPQL(@Param("email1")String email, @Param("employeId")int employeId);
 
     
-
-    
     @Modifying
     @Transactional
     @Query("DELETE from Contrat")

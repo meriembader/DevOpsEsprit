@@ -36,12 +36,12 @@ public class ContratServiceImplTest {
 	public void testAddContrat(){
         
         Date current = new Date();
-        l.info("Create Date - Create Current Date");
+        l.info(" Create the Current Date");
         Employe emp = new Employe("CHRAIEF", "Nihel", "nihel.chraief@esprit.tn", true, Role.INGENIEUR);
         Contrat contrat= new Contrat(current,"travail Administratif",1000);
         l.info("Contrat ajouté");
         Emps.ajouterEmploye(emp);
-        l.info("Employe ajouté");
+        l.info("Employe ajoutéé");
 	
 		entrepriseServiceImpl.ajouterContrat(contrat);
         Emps.affecterContratAEmploye(contrat.getReference(),emp.getId());
@@ -54,7 +54,6 @@ public class ContratServiceImplTest {
 		String msg="Out of method : " +name;
 		l.info(msg);
 	}
-    
     
 	
 	@Before("execution(* tn.esprit.spring.service.*.*(..))")

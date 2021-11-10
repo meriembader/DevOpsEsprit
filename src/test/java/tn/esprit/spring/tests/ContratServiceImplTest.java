@@ -54,6 +54,8 @@ public class ContratServiceImplTest {
 		String msg="Out of method : " +name;
 		l.info(msg);
 	}
+    
+    
 	
 	@Before("execution(* tn.esprit.spring.service.*.*(..))")
 	public Object profile(ProceedingJoinPoint pjp) throws Throwable {

@@ -1,4 +1,4 @@
-package tests;
+package package tn.esprit.spring.tests;
 
 import static org.assertj.core.api.Assertions.assertThat;
 

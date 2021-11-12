@@ -33,9 +33,6 @@ public class DepTest {
 		Emps.getSalaireMoyenByDepartementId(dep.getId());
 	}
 	
-	
-	
-	
 	@After("execution(* tn.esprit.spring.service.*.*(..))")
 	public void logMethodExit(JoinPoint joinPoint){
 		String name= joinPoint.getSignature().getName();

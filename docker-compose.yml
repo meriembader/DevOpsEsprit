@@ -20,7 +20,4 @@ services:
       context: "./"
       dockerfile: "DockerFile"
     depends_on:
-      - mysql-standalone
-      
-      
-      
+      - mysql-standalone      
